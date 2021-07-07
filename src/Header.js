@@ -16,8 +16,9 @@ import { useStateValue } from './StateProvider';
 import { auth } from './firebase';
 import firebase from 'firebase';
 function Header() {
-    const [{user},dispatch]=useStateValue()
-    return (
+    const [{user},dispatch]=useStateValue();
+  
+        return (
         <div className="header">
         <div className="header__left">
             <img className="header__logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_(2019).png/1200px-Facebook_Logo_(2019).png"  alt="fb-logo"/>
@@ -58,7 +59,7 @@ function Header() {
             src={user?.photoURL}
             
             />
-            <h5  className="header__name">{user?.displayName}</h5>
+            <h5 onClick={ ()=> firebase.auth().signOut()} className="header__name">{user?.displayName}</h5>
             </div>
             <IconButton>
                 <AddIcon/>
