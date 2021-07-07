@@ -1,0 +1,16 @@
+.sidebarrow{
+    display:flex;
+    align-items:center;
+    padding:10px;
+    cursor:pointer;
+}
+.sidebarrow:hover{
+    background:lightgray;
+}
+.sidebarrow>.MuiSvgIcon-root{
+    margin:10px;
+    color:#2e81f4;
+}
+.sidebarrow__title{
+    margin-left:10px;
+}
