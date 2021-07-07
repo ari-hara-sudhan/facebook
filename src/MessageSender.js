@@ -4,12 +4,14 @@ import { Avatar } from '@material-ui/core'
 import VideocamIcon from '@material-ui/icons/Videocam';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
+import Posts from './Posts';
 function MessageSender() {
     const submit=(e)=>{
         e.preventDefault();
     }
     return (
-        <div className="messagesender">
+        <div >
+            <div className="messagesender">
             <div className="messagesender__top">
                 <Avatar/>
                 <form>
@@ -40,7 +42,18 @@ function MessageSender() {
             </div>
 
             </div>
+
+            </div>
+         
+            <Posts 
+            message="hello"
+            user="ahs"
+            timestamp="3 minu ago"
+            image="https://www.bing.com/th?id=OIP.5TFdq1ah-13yRK4aqMqt8wHaFj&w=191&h=160&c=8&rs=1&qlt=90&o=6&dpr=1.25&pid=3.1&rm=2"
+            profile="https://www.bing.com/th?id=OIP.7MIeXhMZDa45zGwOg1jPyAHaE9&w=213&h=160&c=8&rs=1&qlt=90&o=6&dpr=1.25&pid=3.1&rm=2"
             
+            />
+        
         </div>
     )
 }
