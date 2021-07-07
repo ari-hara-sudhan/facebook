@@ -1,0 +1,15 @@
+.feed{
+    flex:1;
+    padding:30px 15px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex:0.7;
+    max-width:800px;
+    overflow-y: scroll;
+    z-index:100;
+}
+.feed::-webkit-scrollbar{
+    display:none;
+}

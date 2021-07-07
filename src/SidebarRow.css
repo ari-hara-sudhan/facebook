@@ -3,9 +3,11 @@
     align-items:center;
     padding:10px;
     cursor:pointer;
+    transition: background 100ms ease-out;
 }
 .sidebarrow:hover{
     background:lightgray;
+    border-radius:10px;
 }
 .sidebarrow>.MuiSvgIcon-root{
     margin:10px;
