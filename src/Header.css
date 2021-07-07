@@ -41,6 +41,7 @@
 }
 .header__name{
     margin-left:10px;
+    cursor:pointer;
 }
 .header__logo{
     height:40px;

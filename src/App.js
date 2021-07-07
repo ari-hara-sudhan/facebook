@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import "./App.css"
 import Header from './Header'
 import Sidebar from './Sidebar'
@@ -7,6 +7,7 @@ import { useStateValue } from './StateProvider'
 import Login from './Login'
 function App() {
   const [{user},dispatch]=useStateValue()
+
   return (
     <div className="app">
 

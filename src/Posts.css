@@ -17,6 +17,7 @@
 }
 .post__image{
     width:30vw;
+    object-fit: contain;
 }
 .post__bottom{
     display:flex;

@@ -1,23 +1,49 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./MessageSender.css"
 import { Avatar } from '@material-ui/core'
 import VideocamIcon from '@material-ui/icons/Videocam';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import Posts from './Posts';
+import db from './firebase';
+import { useStateValue } from './StateProvider';
+import firebase from 'firebase';
 function MessageSender() {
+    const [{user},dispatch]=useStateValue()
+    const[text,setText]=useState();
+    const[url,setUrl]=useState();
+    const[posts,setPosts]=useState([])
     const submit=(e)=>{
         e.preventDefault();
+        db.collection("feeds").add({
+            message:text,
+            image:url,
+            profile:user?.photoURL,
+            user:user?.displayName,
+            timestamp:firebase.firestore.FieldValue.serverTimestamp()
+        })
+        setText("");
+        setUrl("");
     }
+
+    useEffect(()=>{
+        db.collection("feeds").orderBy("timestamp","desc").onSnapshot(snapshot=>{
+            setPosts(snapshot.docs.map(doc=>({
+                id:doc.id,
+                data:doc.data()
+            })))
+        })
+
+    },[])
     return (
         <div >
             <div className="messagesender">
             <div className="messagesender__top">
                 <Avatar/>
                 <form>
-                    <input className="messagesender__input" type="text" placeholder="What on ur Mind"/>
-                    <input placeholder="image Url (optional) " />
-                    <button type="submit" onClick={submit}>submit</button>
+                    <input value={text} onChange={e=>setText(e.target.value)} className="messagesender__input" type="text" placeholder="What on ur Mind"/>
+                    <input value={url} onChange={e=>setUrl(e.target.value)}  placeholder="image Url (optional) " />
+                    <button disabled={!text} type="submit" onClick={submit}>submit</button>
                 </form>
 
             </div>
@@ -44,15 +70,21 @@ function MessageSender() {
             </div>
 
             </div>
-         
-            <Posts 
-            message="hello"
-            user="ahs"
-            timestamp="3 minu ago"
-            image="https://www.bing.com/th?id=OIP.5TFdq1ah-13yRK4aqMqt8wHaFj&w=191&h=160&c=8&rs=1&qlt=90&o=6&dpr=1.25&pid=3.1&rm=2"
-            profile="https://www.bing.com/th?id=OIP.7MIeXhMZDa45zGwOg1jPyAHaE9&w=213&h=160&c=8&rs=1&qlt=90&o=6&dpr=1.25&pid=3.1&rm=2"
+         {
+             posts.map(({id,data})=>(
+                <Posts
+                id={id}
+                message={data.message}
+                user={data.user}
+                timestamp={data.timestamp}
+                image={data.image}
+                profile={data.profile}
+                
+                />
+
+             ))
+         }
             
-            />
         
         </div>
     )

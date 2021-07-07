@@ -13,6 +13,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Avatar from '@material-ui/core/Avatar';
 import { IconButton } from '@material-ui/core';
 import { useStateValue } from './StateProvider';
+import { auth } from './firebase';
+import firebase from 'firebase';
 function Header() {
     const [{user},dispatch]=useStateValue()
     return (
@@ -52,8 +54,11 @@ function Header() {
         </div>
         <div className="header__right">
             <div className="header__info">
-            <Avatar/>
-            <h3 className="header__name">ahs</h3>
+            <Avatar
+            src={user?.photoURL}
+            
+            />
+            <h5  className="header__name">{user?.displayName}</h5>
             </div>
             <IconButton>
                 <AddIcon/>

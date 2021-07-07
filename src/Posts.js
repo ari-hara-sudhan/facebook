@@ -13,7 +13,9 @@ function Posts({message,user,timestamp,image,profile}) {
                 <Avatar src={profile}/>
                 <div className="post__topInfo">
                     <h4>{user}</h4>
-                    <h5>{timestamp}</h5>
+                    <h5>{new Date (timestamp?.toDate()).toUTCString()}</h5>
+                
+
 
                 </div>
 
@@ -23,7 +25,7 @@ function Posts({message,user,timestamp,image,profile}) {
                     <h4>{message}</h4>
 
                 </div>
-                <img className="post__image" src={image} alt={"image"}/>
+                 {image && <img className="post__image" src={image} alt={"image"}/>}
 
             </div>
             <div className="post__bottom">
